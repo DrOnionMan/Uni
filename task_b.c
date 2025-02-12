@@ -11,7 +11,7 @@ int main(void){
   const double radius = 2.2;	
   //volume = M_PI * radius * radius * height;	
   
-  volume = M_PI * pow(radius, 2.0) * height;
+  volume = M_PI * pow( abs(radius) , 2.0) * height;
 	
 	// Do not edit below here
 	printf("Volume: %.2f", volume);
