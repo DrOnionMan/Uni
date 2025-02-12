@@ -27,6 +27,7 @@ int main(void){
   char my_email[] = "michael.kidd@student.manchester.ac.uk";
 	const unsigned int len = strlen(my_email);
   if (!INDEX_BOUND(n, 0, len)) {
+    fprintf(stdout, "Error");
     return 1;
   }
   
