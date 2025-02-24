@@ -23,7 +23,7 @@ int main(void) {
       goto exit;
     }
   }
-  fprintf(stdout, "Domain not found\n");
+  fprintf(stdout, "Domain not found.\n");
   return 1;
 
 exit:
