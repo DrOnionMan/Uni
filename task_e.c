@@ -8,7 +8,7 @@ int main(int argc, char *argv[]){
 	
 	// Enter your code under here to read the filename from the command line
 	if (2 > argc) {
-    fprintf(stderr, "Error. Expected 1 filename.\n");
+    fprintf(stdout, "Error. Expected 1 filename.");
     return 1;
   }
 	
@@ -18,7 +18,7 @@ int main(int argc, char *argv[]){
 	FILE *fptr;
 	fptr = fopen(argv[1], "r");
   if (!fptr) {
-    fprintf(stderr, "Error. Cannot open requested file.");
+    fprintf(stdout, "Error. Cannot open requested file.");
     return 1;
   }
 	fscanf(fptr, "%lf", &num);
