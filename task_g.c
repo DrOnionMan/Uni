@@ -117,6 +117,6 @@ int main(void) {
     return 1;
   }
   
-  printf("Max : %0.2lf", max);
+  printf("%0.2lf.", max);
   return 0;
 }
