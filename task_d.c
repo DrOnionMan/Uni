@@ -20,7 +20,9 @@ int main(void){
 
 	// Your code below here
 	char buffer[BUFFMAXLEN];
-	sprintf(buffer, OUTTEXT, num, num);
+  double number1 = round(num * 100.0) / 100.0;
+  double number2 = round(num * 1000.0) / 1000.0;
+	sprintf(buffer, OUTTEXT, number1, number2);
   fprintf(stdout, "%s", buffer);
 	
 	// Do not edit below here
