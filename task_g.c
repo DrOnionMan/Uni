@@ -113,10 +113,10 @@ int main(void) {
   find_max_less_than_10(arr, 20, &max);
   
   if (INFINITY == max) {
-    printf("Error!\n");
+    printf("Error!");
     return 1;
   }
   
-  printf("%0.2lf.", max);
+  printf("%0.2lf", max);
   return 0;
 }
