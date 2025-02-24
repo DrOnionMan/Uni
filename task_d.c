@@ -1,6 +1,8 @@
 #include <stdio.h>
+#include <math.h>
 
-#define OUTTEXT  "{\n\t\"name\": \"Michael Kidd\",\n\t\"email\": \"michael.kidd@student.manchester.ac.uk\",\n\t\"number1\": \"%0.2lf\",\n\t\"number2\": \"%e\"\n}"
+
+#define OUTTEXT  "{\n\t\"name\": \"Michael Kidd\",\n\t\"email\": \"michael.kidd@student.manchester.ac.uk\",\n\t\"number1\": \"%0.2lf\",\n\t\"number2\": \"%0.3e\"\n}"
 #define BUFFMAXLEN 1024
 
 
