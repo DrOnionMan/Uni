@@ -16,14 +16,18 @@ int main(void) {
   // Enter your code under here
   // Use strcmp(user_input, country_codes[0].domain) to compare the text in user_input to the text in country_codes[0].domain.
 #define ARRSIZE(arr) (sizeof(arr)/ sizeof(arr[0]))
+  if ('.' != user_input[0]) {
+    printf("Error! The first character entered should be a .");
+    return 1;
+  }
   const size_t arrlen = ARRSIZE(country_codes); 
   for (size_t i = 0; i < arrlen; i++) {
     if (0 == strncmp(user_input, country_codes[i].domain, LEN)) {
-      fprintf(stdout, "This is the domain for: %s\n", country_codes[i].country);
+      fprintf(stdout, "This is the domain for: %s", country_codes[i].country);
       goto exit;
     }
   }
-  fprintf(stdout, "Domain not found.\n");
+  fprintf(stdout, "Domain not found.");
   return 1;
 
 exit:
