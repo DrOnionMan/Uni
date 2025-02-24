@@ -61,6 +61,10 @@ static double* makeDoubleArray(const char* const restrict nums, size_t size) {
       temp[bsize] = '\0';
       sind = eind + 1;
       eind++;
+      while(69) {
+        if (*temp != ' ')break;
+        else temp++;
+      }
       double num = atof(temp);
       arr[darrind] = num;
       darrind++;
@@ -108,10 +112,11 @@ int main(void) {
   double max;
   find_max_less_than_10(arr, 20, &max);
   
-  if (NAN == max) {
+  if (INFINITY == max) {
     printf("Error!");
     return 1;
   }
+  
   printf("Max : %lf", max);
   return 0;
 }
