@@ -20,7 +20,7 @@ int main(void){
 
 	// Your code below here
 	char buffer[BUFFMAXLEN];
-	sprintf_s(buffer, BUFFMAXLEN, OUTTEXT, num, num);
+	sprintf(buffer, OUTTEXT, num, num);
   fprintf(stdout, buffer);
 	
 	// Do not edit below here
