@@ -21,7 +21,7 @@ int main(void){
 	// Your code below here
 	char buffer[BUFFMAXLEN];
 	sprintf(buffer, OUTTEXT, num, num);
-  fprintf(stdout, buffer);
+  fprintf(stdout, "%s", buffer);
 	
 	// Do not edit below here
 	return 0;
