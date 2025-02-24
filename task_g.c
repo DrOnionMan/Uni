@@ -49,10 +49,12 @@ static double* makeDoubleArray(const char* const restrict nums, size_t size) {
   size_t eind = 0;
   size_t darrind = 0;
   double* arr = (double*)calloc(20, sizeof(double));
+
   do {
-    if ('\n' == nums[eind]) {
+    
+    if ('\n' == nums[eind] || '\0' == nums[eind]) {
+      
       if (20 <= darrind) {
-        fprintf(stderr, "Error!\n");
         return NULL;
       }
       size_t bsize = eind - sind;
@@ -65,14 +67,16 @@ static double* makeDoubleArray(const char* const restrict nums, size_t size) {
         if (*temp != ' ')break;
         else temp++;
       }
+      
       double num = atof(temp);
       arr[darrind] = num;
       darrind++;
-    } else {
+      
+    }else {
       eind++;
     }
 
-  } while(eind < size);
+  } while(eind <= size);
 
   return arr;
 }
@@ -106,14 +110,14 @@ int main(void) {
   size_t size = 0;
   char* fcontents = readFile("numbers.txt", &size);
   double* arr = makeDoubleArray(fcontents, size);
-
+  
   sort(arr, 20);
+  
 
   double max;
   find_max_less_than_10(arr, 20, &max);
   
   if (INFINITY == max) {
-    printf("Error!");
     return 1;
   }
   

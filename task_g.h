@@ -2,7 +2,7 @@
 #include <assert.h>
 void find_max_less_than_10(const double a[], const int n, double *max) {
     
-    // Your code below here
+  // Your code below here
   // sorted array so easy to find value
   if (10.0 <= a[0] ) {
     printf("Error!");
