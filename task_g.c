@@ -108,7 +108,10 @@ int main(void) {
   double max;
   find_max_less_than_10(arr, 20, &max);
   
-
+  if (NAN == max) {
+    printf("Error!")
+    return 1;
+  }
   printf("Max : %lf", max);
   return 0;
 }
