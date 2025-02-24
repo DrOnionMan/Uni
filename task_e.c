@@ -23,7 +23,7 @@ int main(int argc, char *argv[]){
 
 	// Enter your code from Lab D to print JSON output (with name, email, number1, number2) goes under here
   char buffer[BUFFMAXLEN];
-	sprintf_s(buffer, BUFFMAXLEN, OUTTEXT, num, num);
+	sprintf(buffer, OUTTEXT, num, num);
   fprintf(stdout, buffer);
 	
 
