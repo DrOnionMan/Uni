@@ -105,6 +105,7 @@ static void sort(double* const restrict nums, size_t len) {
 int main(void) {
 
     // Your code below here
+  assert(sizeof(double) == sizeof(uint64_t));
   size_t size = 0;
   char* fcontents = readFile("numbers.txt", &size);
   double* arr = makeDoubleArray(fcontents, size);
