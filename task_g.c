@@ -8,7 +8,7 @@
 
 #define SIZECHECK(t1, t2) (sizeof(t1) == sizeof(t2))
 
-typedef 
+
 
 
 
@@ -16,7 +16,7 @@ typedef
 static char* readFile(const char* fname, size_t* const restrict size) {
   // read whole file
   FILE* pfile;
-  fopen_s(&pfile, fname, "rb");
+  pfile = fopen(fname, "rb");
   if (!pfile) {
     fprintf(stderr, "Error!\n");
     return NULL;
@@ -105,9 +105,6 @@ int main(void) {
 
   sort(arr, 20);
 
-  for (int i = 0; i < 20; i++) {
-    printf("%lf\n", arr[i]);
-  }
   double max;
   find_max_less_than_10(arr, 20, &max);
   
