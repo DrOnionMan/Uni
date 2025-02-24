@@ -51,10 +51,8 @@ static double* makeDoubleArray(const char* const restrict nums, size_t size) {
   double* arr = (double*)calloc(20, sizeof(double));
 
   do {
-    
     if ('\n' == nums[eind] || '\0' == nums[eind]) {
-      
-      if (20 <= darrind) {
+      if (20 < darrind) {
         return NULL;
       }
       size_t bsize = eind - sind;
@@ -110,8 +108,8 @@ int main(void) {
   size_t size = 0;
   char* fcontents = readFile("numbers.txt", &size);
   double* arr = makeDoubleArray(fcontents, size);
-  
-  sort(arr, 20);
+  if (NULL == arr) return 1;
+  sort(arr, 19);
   
 
   double max;
