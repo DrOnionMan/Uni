@@ -2,7 +2,7 @@
 #include <math.h>
 
 
-#define OUTTEXT  "{\n\t\"name\": \"Michael Kidd\",\n\t\"email\": \"michael.kidd@student.manchester.ac.uk\",\n\t\"number1\": \"%0.2lf\",\n\t\"number2\": \"%0.3e\"\n}"
+#define OUTTEXT  "{\n\t\"name\": \"Michael Kidd\",\n\t\"email\": \"michael.kidd@student.manchester.ac.uk\",\n\t\"number1\": %0.2lf,\n\t\"number2\": %0.3e\n}"
 #define BUFFMAXLEN 1024
 
 
@@ -22,9 +22,7 @@ int main(void){
 
 	// Your code below here
 	char buffer[BUFFMAXLEN];
-  double number1 = round(num * 100.0) / 100.0;
-  double number2 = round(num * 1000.0) / 1000.0;
-	sprintf(buffer, OUTTEXT, number1, number2);
+	sprintf(buffer, OUTTEXT, num, num);
   fprintf(stdout, "%s", buffer);
 	
 	// Do not edit below here
