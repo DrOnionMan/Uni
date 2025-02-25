@@ -12,7 +12,9 @@ void find_max_less_than_10(const double a[], const int n, double *max) {
   for (int i = 0; i < n; i++) {
     if (10.0 <= a[i]) {
       *max = a[i-1];
-      return;
+      break;
     }
   }  
+  
+  fprintf(stdout, "%0.2lf", *max);
 }

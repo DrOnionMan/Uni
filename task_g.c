@@ -109,8 +109,6 @@ int main(void) {
   
   if (INFINITY == max) {
     return 1;
-  } else {
-    printf("%0.2lf", max); 
   }
   
   free(fcontents);
