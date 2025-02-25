@@ -11,7 +11,7 @@ static char* readFile(const char* fname, size_t* const restrict size) {
   FILE* pfile = NULL;
   pfile = fopen(fname, "rb");
   if (!pfile) {
-    fprintf(stderr, "Error!\n");
+    //fprintf(stderr, "Error!\n");
     return NULL;
   }
   fseek(pfile, 0L, SEEK_END);
@@ -19,13 +19,13 @@ static char* readFile(const char* fname, size_t* const restrict size) {
   rewind(pfile);
   char* buffer = (char*) malloc(sizeof(char) * fsize);
   if (!buffer) {
-    fprintf(stderr, "Error!\n");
+    //fprintf(stderr, "Error!\n");
     return buffer;
   }
   const size_t bytesread = fread(buffer, sizeof(char), fsize, pfile);
 
   if (bytesread != fsize) {
-    fprintf(stderr, "Error!\n");
+    //fprintf(stderr, "Error!\n");
     return NULL;
   }
 
@@ -67,7 +67,7 @@ static double* makeDoubleArray(const char* const restrict nums, size_t size) {
   return arr;
 }
 
-static inline __fastcall void swap(double* const restrict n1, double* const restrict n2) {
+static inline void swap(double* const restrict n1, double* const restrict n2) {
   *(uint64_t*)n1 ^= *(uint64_t*)n2;
   *(uint64_t*)n2 ^= *(uint64_t*)n1;
   *(uint64_t*)n1 ^= *(uint64_t*)n2;
