@@ -7,14 +7,12 @@ void find_max_less_than_10(const double a[], const int n, double *max) {
   if (10.0 <= a[0] ) {
     printf("Error!");
     *max = INFINITY;
-    goto end;
+    return;
   }
   for (int i = 0; i < n; i++) {
     if (10.0 <= a[i]) {
       *max = a[i-1];
-      goto end;
+      return;
     }
   }  
-
-    end:
 }

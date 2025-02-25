@@ -6,30 +6,23 @@
 #include <assert.h>
 
 
-#define SIZECHECK(t1, t2) (sizeof(t1) == sizeof(t2))
-
-
-
-
-
-
 static char* readFile(const char* fname, size_t* const restrict size) {
   // read whole file
-  FILE* pfile;
+  FILE* pfile = NULL;
   pfile = fopen(fname, "rb");
   if (!pfile) {
     fprintf(stderr, "Error!\n");
     return NULL;
   }
   fseek(pfile, 0L, SEEK_END);
-  size_t fsize = ftell(pfile);
+  const size_t fsize = ftell(pfile);
   rewind(pfile);
   char* buffer = (char*) malloc(sizeof(char) * fsize);
   if (!buffer) {
     fprintf(stderr, "Error!\n");
     return buffer;
   }
-  size_t bytesread = fread(buffer, sizeof(char), fsize, pfile);
+  const size_t bytesread = fread(buffer, sizeof(char), fsize, pfile);
 
   if (bytesread != fsize) {
     fprintf(stderr, "Error!\n");
@@ -48,46 +41,40 @@ static double* makeDoubleArray(const char* const restrict nums, size_t size) {
   size_t sind = 0;
   size_t eind = 0;
   size_t darrind = 0;
-  double* arr = (double*)calloc(20, sizeof(double));
-
+  double* const arr = (double*)calloc(20, sizeof(double));
   do {
     if ('\n' == nums[eind] || '\0' == nums[eind]) {
       if (20 < darrind) {
         return NULL;
       }
-      size_t bsize = eind - sind;
-      char* temp = (char*) alloca(sizeof(char) * (bsize));
+      const size_t bsize = eind - sind;
+      char* temp = (char*)alloca(sizeof(char) * (bsize));
       strncpy(temp, nums + sind, bsize);
       temp[bsize] = '\0';
       sind = eind + 1;
       eind++;
       while(69) {
-        if (*temp != ' ')break;
+        if (' ' != *temp)break;
         else temp++;
       }
-      
       double num = atof(temp);
       arr[darrind] = num;
       darrind++;
-      
     }else {
       eind++;
     }
-
   } while(eind <= size);
-
   return arr;
 }
 
-static inline void swap(double* restrict n1, double* restrict n2) {
-  //magic
+static inline __fastcall void swap(double* const restrict n1, double* const restrict n2) {
   *(uint64_t*)n1 ^= *(uint64_t*)n2;
   *(uint64_t*)n2 ^= *(uint64_t*)n1;
   *(uint64_t*)n1 ^= *(uint64_t*)n2;
 }
 
 
-static void sort(double* const restrict nums, size_t len) {
+static void sort(double* const restrict nums, const size_t len) {
   // Would do quicksort but its O(1) anyway so why bother
   for (size_t i = 0; i < len - 1; i++) {
     for (size_t j = 0; j < len - 1 - i; j++) {
@@ -103,13 +90,17 @@ static void sort(double* const restrict nums, size_t len) {
 
 
 int main(void) {
-
-    // Your code below here
-  assert(sizeof(double) == sizeof(uint64_t));
+  // Your code below here
   size_t size = 0;
-  char* fcontents = readFile("numbers.txt", &size);
-  double* arr = makeDoubleArray(fcontents, size);
-  if (NULL == arr) return 1;
+  char* const fcontents = readFile("numbers.txt", &size);
+  assert(NULL != fcontents);
+  double* const arr = makeDoubleArray(fcontents, size);
+  assert(NULL != arr);
+  /*
+  for (int i = 0; i < 20; i++) {
+    printf("%lf\n", arr[i]);
+  }
+  */
   sort(arr, 19);
   
 
@@ -118,8 +109,11 @@ int main(void) {
   
   if (INFINITY == max) {
     return 1;
+  } else {
+    printf("%0.2lf", max); 
   }
   
-  printf("%0.2lf", max);
+  free(fcontents);
+  free(arr);
   return 0;
 }
