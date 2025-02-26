@@ -76,7 +76,7 @@ static inline __fastcall swap(double* const restrict n1, double* const restrict 
 
 int main(void) {
   // Your code below here
-
+  printf("Testcjbvevbhwjleahbwucjeshgcvhkw");
   size_t size = 0;
   char* const fcontents = readFile("numbers.txt", &size);
   assert(NULL != fcontents);
