@@ -66,28 +66,40 @@ static double* makeDoubleArray(const char* const restrict nums, size_t size) {
   } while(eind <= size);
   return arr;
 }
-
-static inline void swap(double* const restrict n1, double* const restrict n2) {
+/* OLD
+static inline __fastcall swap(double* const restrict n1, double* const restrict n2) {
   *(uint64_t*)n1 ^= *(uint64_t*)n2;
   *(uint64_t*)n2 ^= *(uint64_t*)n1;
   *(uint64_t*)n1 ^= *(uint64_t*)n2;
 }
+*/
 
 
-static void sort(double* const restrict nums, const size_t len) {
-  // Would do quicksort but its O(1) anyway so why bother
-  for (size_t i = 0; i < len - 1; i++) {
-    for (size_t j = 0; j < len - 1 - i; j++) {
-      if (nums[j] > nums[j + 1]) {
-        swap(nums + j, nums + j + 1);
-      }
-    }
-  }  
+static void Qsort(double* const restrict a, const size_t len) {
+  if (len <= 1) 
+    return;
+  const double pivot = a[len/2];
+  double b[len], c[len];
+  size_t i, j = 0, k = 0;
+  for (i=0; i < len; i++) {
+    //ignore pivot value
+    if (i == len/2) 
+      continue;
+    // fill sub arrs
+    if ( a[i] <= pivot) 
+      b[j++] = a[i];
+    else            
+      c[k++] = a[i];
+  }
+  //sort sub arrs after pivot split recursively
+  Qsort(b,j);
+  Qsort(c,k);
+  for (i=0; i<j; i++) 
+    a[i] = b[i];
+  a[j] = pivot;
+  for (i= 0; i<k; i++) 
+    a[j+1+i] = c[i];
 }
-
-
-
-
 
 int main(void) {
   // Your code below here
@@ -96,19 +108,24 @@ int main(void) {
   assert(NULL != fcontents);
   double* const arr = makeDoubleArray(fcontents, size);
   assert(NULL != arr);
+  Qsort(arr, 20);
+  
   /*
   for (int i = 0; i < 20; i++) {
     printf("%lf\n", arr[i]);
   }
   */
-  sort(arr, 19);
+  //sort(arr, 19);
   
 
   double max;
   find_max_less_than_10(arr, 20, &max);
   
   if (INFINITY == max) {
+    fprintf(stdout, "Error!");
     return 1;
+  } else {
+    fprintf(stdout, "%0.2lf", max);
   }
   
   free(fcontents);
