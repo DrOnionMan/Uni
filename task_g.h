@@ -33,7 +33,7 @@ static void Qsort(double* const restrict a, const size_t len) {
 void find_max_less_than_10(const double a[], const int n, double *max) {
   // Your code below here
   // sorted array so easy to find val
-  Qsort(a, 20);
+  Qsort((double* const)a, 20);
   int l = 0;
   int r = n - 1;
   int res = -1; 
