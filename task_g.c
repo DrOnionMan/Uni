@@ -21,11 +21,9 @@ static char* readFile(const char* fname, size_t* const restrict size) {
     return buffer;
   }
   const size_t bytesread = fread(buffer, sizeof(char), fsize, pfile);
-
   if (bytesread != fsize) {
     return NULL;
   }
-
   buffer[bytesread] = '\0';
   *size = fsize;
   fclose(pfile);
@@ -74,52 +72,20 @@ static inline __fastcall swap(double* const restrict n1, double* const restrict 
 */
 
 
-static void Qsort(double* const restrict a, const size_t len) {
-  if (len <= 1) 
-    return;
-  const double pivot = a[len/2];
-  double b[len], c[len];
-  size_t i, j = 0, k = 0;
-  for (i=0; i < len; i++) {
-    //ignore pivot value
-    if (i == len/2) 
-      continue;
-    // fill sub arrs
-    if ( a[i] <= pivot) 
-      b[j++] = a[i];
-    else            
-      c[k++] = a[i];
-  }
-  //sort sub arrs after pivot split recursively
-  Qsort(b,j);
-  Qsort(c,k);
-  for (i=0; i<j; i++) 
-    a[i] = b[i];
-  a[j] = pivot;
-  for (i= 0; i<k; i++) 
-    a[j+1+i] = c[i];
-}
+
 
 int main(void) {
   // Your code below here
+
   size_t size = 0;
   char* const fcontents = readFile("numbers.txt", &size);
   assert(NULL != fcontents);
   double* const arr = makeDoubleArray(fcontents, size);
   assert(NULL != arr);
-  Qsort(arr, 20);
-  
-  /*
-  for (int i = 0; i < 20; i++) {
-    printf("%lf\n", arr[i]);
-  }
-  */
-  //sort(arr, 19);
-  
-
   double max;
   find_max_less_than_10(arr, 20, &max);
-  
+  printf("Error!");
+  return 0;
   if (INFINITY == max) {
     fprintf(stdout, "Error!");
     return 1;
