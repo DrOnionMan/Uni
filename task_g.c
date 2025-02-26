@@ -82,7 +82,6 @@ int main(void) {
   assert(NULL != arr);
   double max;
   find_max_less_than_10(arr, 20, &max);
-  return 0;
   if (INFINITY == max) {
     fprintf(stdout, "Error!");
   } else {
