@@ -49,7 +49,7 @@ void find_max_less_than_10(const double a[], const int n, double *max) {
     }    
   }
   
-  *max = res == -1 ? INFINITY : a[res];
+  *max = res == -1 ? -1.0 : a[res];
 }
 
 
