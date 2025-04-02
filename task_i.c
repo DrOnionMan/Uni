@@ -40,12 +40,25 @@ int main(void) {
     }
     fclose(fptr);
     fptr = NULL;
+    // allocate row buffers 
+    double row1[N];
+    double row2[N];
+    double row3[N];
     for (int i = 0; i < N; i++) {
-      qsort(data[i], 3, sizeof(double), comp);
-      printf("%.2lf,", data[i][1]);
+      // copy data into rows 
+      row1[i] = data[i][0];
+      row2[i] = data[i][1];
+      row3[i] = data[i][2];
     }
+    // sort them in acending order with stdlib qsort
+    // because i cba writing my own again lmao
+    qsort(row1, 201, sizeof(double), comp);
+    qsort(row2, 201, sizeof(double), comp);
+    qsort(row3, 201, sizeof(double), comp);
     
-
+    // print median value
+    // will be (n-1)/2 therefore is (201-1)/2 = 100
+    printf("%.2lf, %.2lf, %.2lf", row1[100], row2[100], row3[100]);
 
 
 
