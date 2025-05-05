@@ -55,11 +55,9 @@ int main(void) {
     qsort(row1, 201, sizeof(double), comp);
     qsort(row2, 201, sizeof(double), comp);
     qsort(row3, 201, sizeof(double), comp);
-    
     // print median value
     // will be (n-1)/2 therefore is (201-1)/2 = 100
     printf("%.2lf,%.2lf,%.2lf", row1[100], row2[100], row3[100]);
-
 
 
     return EXIT_SUCCESS;
