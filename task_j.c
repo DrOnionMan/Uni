@@ -4,7 +4,7 @@
 int main(void) {
 	
     // Set email address here	
-    char email[] = "michael.kidd.@student.manchester.ac.uk";
+    char email[] = "michael.kidd@student.manchester.ac.uk";
 
     // Open file for writing
     FILE *fptr;
